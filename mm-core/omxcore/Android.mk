@@ -12,19 +12,8 @@ OMXCORE_CFLAGS += -U_ENABLE_QC_MSG_LOG_
 #             Figure out the targets
 #===============================================================================
 
-ifeq ($(TARGET_BOARD_PLATFORM),msm7627a)
-    MM_CORE_TARGET = 7627A
-else ifeq ($(TARGET_BOARD_PLATFORM),msm7627_surf)
-    MM_CORE_TARGET = 7627
-else ifeq ($(TARGET_BOARD_PLATFORM),msm7627_6x)
-    MM_CORE_TARGET = 7627
-else ifeq ($(TARGET_BOARD_PLATFORM),msm7630)
-    MM_CORE_TARGET = 7630
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8660)
-    MM_CORE_TARGET = 8660
-    OMXCORE_CFLAGS += -DENABLE_DRMPLAY
-else ifeq ($(TARGET_BOARD_PLATFORM),msm8960)
-    MM_CORE_TARGET = 8960
+ifeq ($(TARGET_BOARD_PLATFORM),msm7x27)
+    MM_CORE_TARGET = 7k
 else
     $(error Unsupported target platform $(TARGET_BOARD_PLATFORM))
 endif
