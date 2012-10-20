@@ -73,6 +73,14 @@ public:
                                     int session = 0);
         virtual void setForceUse(AudioSystem::force_use usage, AudioSystem::forced_config config);
         status_t startInput(audio_io_handle_t input);
+#ifdef WITH_QCOM_VOIP_OVER_MVS
+        virtual bool needsDirectOuput(AudioSystem::stream_type stream,
+                                      uint32_t samplingRate,
+                                      uint32_t format,
+                                      uint32_t channels,
+                                      AudioSystem::output_flags flags,
+                                      uint32_t device);
+#endif
 
 protected:
         // true is current platform implements a back microphone
@@ -87,6 +95,7 @@ protected:
         status_t checkAndSetVolume(int stream, int index, audio_io_handle_t output, uint32_t device, int delayMs = 0, bool force = false);
         // select input device corresponding to requested audio source
         virtual uint32_t getDeviceForInputSource(int inputSource);
+        status_t stopInput(audio_io_handle_t input);
         // Mute or unmute the stream on the specified output
         void setStreamMute(int stream, bool on, audio_io_handle_t output, int delayMs = 0);
 #ifdef WITH_QCOM_LPA

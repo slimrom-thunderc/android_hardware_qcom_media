@@ -74,7 +74,13 @@ public:
 
 protected:
         // true is current platform implements a back microphone
-        virtual bool hasBackMicrophone() const { return false; }
+        virtual bool hasBackMicrophone() const {
+#ifdef BACK_MIC_CAMCORDER
+                return true;
+#else
+                return false;
+#endif
+        }
 #ifdef WITH_A2DP
         // true is current platform supports suplication of notifications and ringtones over A2DP output
         virtual bool a2dpUsedForSonification() const { return true; }
@@ -87,6 +93,7 @@ protected:
         virtual uint32_t getDeviceForInputSource(int inputSource);
         // Mute or unmute the stream on the specified output
         void setStreamMute(int stream, bool on, audio_io_handle_t output, int delayMs = 0);
+        status_t stopInput(audio_io_handle_t input);
 #ifdef WITH_QCOM_LPA
         audio_io_handle_t mLPADecodeOutput;           // active output handler
         audio_io_handle_t mLPAActiveOuput;           // LPA Output Handler during inactive state
