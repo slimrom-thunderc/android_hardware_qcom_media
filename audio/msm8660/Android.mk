@@ -6,10 +6,6 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
-    LOCAL_CFLAGS += -DQCOM_HARDWARE
-endif
-
 LOCAL_SRC_FILES := \
     AudioHardware.cpp \
     audio_hw_hal.cpp
@@ -48,6 +44,18 @@ LOCAL_C_INCLUDES += hardware/libhardware_legacy/include
 LOCAL_C_INCLUDES += frameworks/base/include
 LOCAL_C_INCLUDES += system/core/include
 
+ifeq ($(BOARD_HAVE_SAMSUNG_AUDIO),true)
+LOCAL_CFLAGS += -DSAMSUNG_AUDIO
+endif
+
+ifeq ($(BOARD_HAVE_SONY_AUDIO),true)
+LOCAL_CFLAGS += -DSONY_AUDIO
+endif
+
+ifeq ($(BOARD_HAVE_BACK_MIC_CAMCORDER),true)
+LOCAL_CFLAGS += -DBACK_MIC_CAMCORDER
+endif
+
 include $(BUILD_SHARED_LIBRARY)
 
 
@@ -76,5 +84,13 @@ ifeq ($(BOARD_HAVE_BLUETOOTH),true)
 endif
 
 LOCAL_C_INCLUDES += hardware/libhardware_legacy/audio
+
+ifeq ($(BOARD_HAVE_SAMSUNG_AUDIO),true)
+LOCAL_CFLAGS += -DSAMSUNG_AUDIO
+endif
+
+ifeq ($(BOARD_HAVE_BACK_MIC_CAMCORDER),true)
+LOCAL_CFLAGS += -DBACK_MIC_CAMCORDER
+endif
 
 include $(BUILD_SHARED_LIBRARY)

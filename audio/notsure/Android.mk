@@ -7,10 +7,6 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
-    LOCAL_CFLAGS += -DQCOM_HARDWARE
-endif
-
 LOCAL_SRC_FILES := \
     AudioHardware.cpp \
     audio_hw_hal.cpp
@@ -33,6 +29,10 @@ endif
 
 ifeq ($(BOARD_USES_QCOM_AUDIO_RESETALL),true)
     LOCAL_CFLAGS += -DWITH_QCOM_RESETALL
+endif
+
+ifeq ($(BOARD_USES_STEREO_HW_SPEAKER),true)
+    LOCAL_CFLAGS += -DWITH_STEREO_HW_SPEAKER
 endif
 
 LOCAL_SHARED_LIBRARIES := \
