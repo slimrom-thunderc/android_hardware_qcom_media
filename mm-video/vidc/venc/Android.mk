@@ -39,9 +39,6 @@ endif
 ifeq ($(TARGET_BOARD_PLATFORM),msm7x27a)
 libmm-venc-def += -DMAX_RES_720P
 endif
-ifeq ($(TARGET_BOARD_PLATFORM),msm7x27)
-libmm-venc-def += -DMAX_RES_720P
-endif
 ifeq ($(TARGET_BOARD_PLATFORM),msm7x30)
 libmm-venc-def += -DMAX_RES_720P
 endif
